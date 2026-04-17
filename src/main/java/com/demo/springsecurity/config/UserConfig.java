@@ -15,7 +15,7 @@ public class UserConfig {
     UserDetailsService userDetailsService(){
         var user = User.withUsername("rijo")
                 .password("password")
-                .roles("USER")
+                .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user);
     }

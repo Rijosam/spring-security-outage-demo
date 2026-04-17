@@ -16,19 +16,13 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class SecurityConfig {
 
-  private final AuthenticationProvider authenticationProvider;
-
-    public SecurityConfig(AuthenticationProvider authenticationProvider) {
-        this.authenticationProvider = authenticationProvider;
-    }
-
-    @Bean
+  @Bean
   public SecurityFilterChain configure(HttpSecurity http) {
       http.httpBasic(Customizer.withDefaults());
-      http.authenticationProvider(authenticationProvider);
-      http.authorizeHttpRequests(auth ->
-              auth.anyRequest().authenticated());
 
+      http.authorizeHttpRequests(auth ->
+              auth.anyRequest()
+                      .hasRole("ADMIN"));
       return http.build();
   }
 
