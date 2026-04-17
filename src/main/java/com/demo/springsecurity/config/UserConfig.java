@@ -13,11 +13,23 @@ public class UserConfig {
 
     @Bean
     UserDetailsService userDetailsService(){
-        var user = User.withUsername("rijo")
+
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+
+        var user1 = User.withUsername("rijo")
                 .password("password")
-                .roles("USER")
+                .authorities("READ")
                 .build();
-        return new InMemoryUserDetailsManager(user);
+
+        var user2 = User.withUsername("ancy")
+                .password("password")
+                .authorities("WRITE")
+                .build();
+
+        manager.createUser(user1);
+        manager.createUser(user2);
+
+        return manager;
     }
 
     @Bean
