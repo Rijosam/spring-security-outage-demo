@@ -29,6 +29,6 @@ public class BalanceController {
     @GetMapping("/user")
     public ResponseEntity<String> getLoggedInUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return ResponseEntity.ok("USER :" +authentication.getName());
+        return ResponseEntity.ok("USER : " +authentication.getName());
     }
 }
